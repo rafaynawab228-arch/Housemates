@@ -12,7 +12,6 @@
 <link rel="icon" id="dynFav" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%2310B981'/><text x='50' y='68' font-size='60' font-weight='bold' fill='white' text-anchor='middle' font-family='sans-serif'>H</text></svg>">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Bricolage+Grotesque:wght@700;800&display=swap" rel="stylesheet">
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
@@ -20,11 +19,9 @@ html,body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#F5F7F
 body{padding-bottom:calc(74px + env(safe-area-inset-bottom,0px))}
 button{font-family:inherit;cursor:pointer;border:none;outline:none;background:none}
 input,select,textarea{font-family:inherit;outline:none;border:none}
-img{display:block;max-width:100%}
-::-webkit-scrollbar{width:0;height:0}
+img{display:block;max-width:100%}::-webkit-scrollbar{width:0;height:0}
 .inp{width:100%;padding:14px 16px;background:#F5F7FA;border:1.5px solid #E2E5EB;border-radius:12px;color:#1A1D26;font-size:15px;font-weight:500;transition:border .2s,box-shadow .2s}
-.inp:focus{border-color:#10B981;box-shadow:0 0 0 3px rgba(16,185,129,.1)}
-.inp::placeholder{color:#9CA3AF}
+.inp:focus{border-color:#10B981;box-shadow:0 0 0 3px rgba(16,185,129,.1)}.inp::placeholder{color:#9CA3AF}
 textarea.inp{resize:vertical;min-height:64px}
 select.inp{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%236B7280' viewBox='0 0 24 24'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center}
 .lbl{display:block;font-size:12px;font-weight:700;color:#6B7280;margin:16px 0 6px;text-transform:uppercase;letter-spacing:.5px}.lbl:first-child{margin-top:0}
@@ -35,19 +32,6 @@ select.inp{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns
 .btn-sm{padding:8px 16px;border-radius:10px;font-size:13px;font-weight:700;width:auto}
 .btn-icon{width:42px;height:42px;border-radius:12px;background:#fff;border:1px solid #E2E5EB;color:#1A1D26;font-size:18px;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 1px 3px rgba(0,0,0,.06)}
 .btn-rm{width:32px;height:32px;border-radius:8px;background:#FEF2F2;border:1px solid #FECACA;color:#EF4444;font-size:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-
-/* Google Sign-In Button */
-.google-btn{display:flex;align-items:center;justify-content:center;gap:12px;width:100%;max-width:400px;padding:16px 24px;border-radius:16px;font-size:16px;font-weight:700;background:#FFFFFF;color:#1A1D26;border:2px solid #E2E5EB;box-shadow:0 2px 12px rgba(0,0,0,.08);transition:transform .15s,box-shadow .15s;cursor:pointer;margin-bottom:16px}
-.google-btn:active{transform:scale(.97);box-shadow:0 1px 4px rgba(0,0,0,.08)}
-.google-btn:hover{border-color:#D0D5DD}
-.google-logo{width:22px;height:22px}
-.loading-spinner{width:20px;height:20px;border:3px solid #E2E5EB;border-top:3px solid #10B981;border-radius:50%;animation:spin .8s linear infinite;margin:0 auto}
-@keyframes spin{to{transform:rotate(360deg)}}
-.signed-in-as{display:flex;align-items:center;gap:10px;background:#F0FDF4;border:1px solid #BBF7D0;border-radius:12px;padding:12px 16px;margin-bottom:16px;width:100%;max-width:400px}
-.signed-in-as img{width:36px;height:36px;border-radius:50%;border:2px solid #10B981}
-.signed-in-name{font-size:14px;font-weight:700;color:#059669}
-.signed-in-email{font-size:12px;color:#6B7280}
-
 #S{min-height:100dvh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:28px 20px;background:linear-gradient(180deg,#E8F5E9 0%,#F5F7FA 40%) !important}
 .s-logo{font-size:64px;animation:bob 3s ease-in-out infinite}
 @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
@@ -55,17 +39,17 @@ select.inp{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns
 .s-sub{color:#6B7280;font-size:15px;margin:6px 0 32px;text-align:center}
 .s-card{width:100%;max-width:400px;background:#fff;border:1px solid #E2E5EB;border-radius:20px;padding:24px;margin-bottom:16px;box-shadow:0 4px 12px rgba(0,0,0,.08)}
 .s-card h2{font-size:18px;font-weight:800;color:#1A1D26;margin-bottom:16px}
-.s-features{width:100%;max-width:400px;display:flex;flex-direction:column;gap:8px;margin-top:4px}
+.s-start-btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;max-width:400px;padding:18px;border-radius:16px;font-size:17px;font-weight:800;background:linear-gradient(135deg,#10B981 0%,#059669 100%);color:#fff;box-shadow:0 4px 20px rgba(16,185,129,.35);transition:transform .15s;border:none;cursor:pointer;margin-bottom:12px}
+.s-start-btn:active{transform:scale(.97)}
+.s-features{width:100%;max-width:400px;display:flex;flex-direction:column;gap:8px;margin-top:8px}
 .s-feat{display:flex;align-items:center;gap:10px;font-size:14px;color:#3D4350;font-weight:500}
 .s-feat-icon{width:32px;height:32px;border-radius:10px;background:rgba(16,185,129,.1);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
-
 #A{display:none}
 .hdr{position:sticky;top:0;z-index:30;background:#fff;border-bottom:1px solid #E2E5EB;padding:12px 18px 14px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 1px 4px rgba(0,0,0,.04)}
 .hdr-title{font-family:'Bricolage Grotesque',sans-serif;font-size:22px;color:#059669}
 .hdr-sub{font-size:12px;color:#6B7280;margin-top:2px}
 .hdr-r{display:flex;align-items:center;gap:10px}
-.hdr-av{width:38px;height:38px;border-radius:12px;background:rgba(16,185,129,.1);border:2px solid #10B981;display:flex;align-items:center;justify-content:center;font-size:18px;overflow:hidden}
-.hdr-av img{width:100%;height:100%;object-fit:cover}
+.hdr-av{width:38px;height:38px;border-radius:12px;background:rgba(16,185,129,.1);border:2px solid #10B981;display:flex;align-items:center;justify-content:center;font-size:18px}
 .cnt{padding:16px 18px 20px}
 .tabs{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #E2E5EB;display:none;justify-content:space-around;padding:8px 0 calc(8px + env(safe-area-inset-bottom,0px));z-index:40;box-shadow:0 -2px 8px rgba(0,0,0,.04)}
 .tab{display:flex;flex-direction:column;align-items:center;gap:3px;color:#9CA3AF;font-size:11px;font-weight:600;padding:4px 12px;transition:color .2s}
@@ -93,7 +77,7 @@ select.inp{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns
 .rot-item{display:flex;align-items:center;gap:12px;padding:12px 14px;background:#fff;border:1.5px solid #E2E5EB;border-radius:12px;margin-bottom:8px;cursor:grab;touch-action:none;user-select:none;transition:box-shadow .15s,border-color .15s}
 .rot-item:active,.rot-item.dragging{box-shadow:0 4px 16px rgba(0,0,0,.12);border-color:#10B981;background:#F0FDF4}
 .rot-item .drag-handle{color:#9CA3AF;font-size:18px;flex-shrink:0;padding:0 4px}
-.rot-item .rot-avatar{font-size:20px}.rot-item .rot-name{font-size:14px;font-weight:600;color:#1A1D26;flex:1}
+.rot-item .rot-name{font-size:14px;font-weight:600;color:#1A1D26;flex:1}
 .rot-item .rot-num{width:24px;height:24px;border-radius:8px;background:#10B981;color:#fff;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .rot-hint{background:#F0FDF4;border:1px solid #BBF7D0;border-radius:12px;padding:12px 14px;margin-top:10px;display:flex;align-items:flex-start;gap:10px}
 .rot-hint-icon{font-size:20px;flex-shrink:0}.rot-hint-text{font-size:13px;color:#065F46;line-height:1.5}
@@ -104,8 +88,7 @@ select.inp{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns
 .proof-info{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,.8));padding:8px 10px}
 .proof-name{font-size:11px;font-weight:700;color:white}.proof-date{font-size:10px;color:rgba(255,255,255,.7)}
 .proof-badge{position:absolute;top:8px;right:8px;background:#10B981;color:#fff;font-size:10px;font-weight:800;padding:3px 8px;border-radius:6px}
-.cel-ov{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.5);display:none;flex-direction:column;align-items:center;justify-content:center;padding:24px;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
-.cel-ov.show{display:flex}
+.cel-ov{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.5);display:none;flex-direction:column;align-items:center;justify-content:center;padding:24px;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}.cel-ov.show{display:flex}
 .cel-card{background:#fff;border:1px solid #E2E5EB;border-radius:24px;padding:28px;max-width:360px;width:100%;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.15);animation:popIn .4s cubic-bezier(.16,1,.3,1)}
 @keyframes popIn{from{transform:scale(.8);opacity:0}to{transform:scale(1);opacity:1}}
 .cel-emoji{font-size:64px;margin-bottom:8px;animation:partyB .6s ease}
@@ -120,11 +103,9 @@ select.inp{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns
 .pp-rm{position:absolute;top:8px;right:8px;width:30px;height:30px;border-radius:50%;background:rgba(0,0,0,.6);color:white;font-size:14px;display:flex;align-items:center;justify-content:center}
 .feed-card{background:#fff;border-radius:14px;padding:16px;border:1px solid #E2E5EB;margin-bottom:10px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
 .feed-hdr{display:flex;align-items:center;gap:10px;margin-bottom:8px}
-.feed-av{width:34px;height:34px;border-radius:10px;background:rgba(16,185,129,.1);display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0;overflow:hidden}
-.feed-av img{width:100%;height:100%;object-fit:cover}
+.feed-av{width:34px;height:34px;border-radius:10px;background:rgba(16,185,129,.1);display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0}
 .feed-nm{font-size:14px;font-weight:700;color:#1A1D26}.feed-tm{font-size:11px;color:#9CA3AF}
-.feed-ph{width:100%;border-radius:12px;overflow:hidden;margin-top:8px;max-height:200px;cursor:pointer}
-.feed-ph img{width:100%;height:100%;object-fit:cover}
+.feed-ph{width:100%;border-radius:12px;overflow:hidden;margin-top:8px;max-height:200px;cursor:pointer}.feed-ph img{width:100%;height:100%;object-fit:cover}
 .feed-rx{display:flex;gap:6px;margin-top:10px}
 .feed-r{padding:5px 12px;border-radius:20px;font-size:14px;background:#F5F7FA;border:1px solid #E2E5EB;transition:all .15s}
 .feed-r:active,.feed-r.on{background:rgba(16,185,129,.1);border-color:#10B981}
@@ -136,8 +117,7 @@ select.inp{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns
 .an-count{width:26px;text-align:right;font-size:14px;font-weight:800;color:#059669}
 .mr{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid #F0F2F5}.mr:last-child{border-bottom:none}
 .mr-i{display:flex;align-items:center;gap:12px}
-.mr-av{width:42px;height:42px;border-radius:12px;background:rgba(16,185,129,.1);display:flex;align-items:center;justify-content:center;font-size:20px;overflow:hidden}
-.mr-av img{width:100%;height:100%;object-fit:cover}
+.mr-av{width:42px;height:42px;border-radius:12px;background:rgba(16,185,129,.1);display:flex;align-items:center;justify-content:center;font-size:20px}
 .mr-n{font-size:15px;font-weight:700;color:#1A1D26}.mr-s{font-size:12px;color:#6B7280}
 .badge{font-size:11px;font-weight:700;padding:4px 10px;border-radius:8px;text-transform:uppercase;letter-spacing:.3px}
 .badge-a{background:rgba(16,185,129,.1);color:#059669}.badge-m{background:#F5F7FA;color:#6B7280}
@@ -174,8 +154,7 @@ select.inp{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns
 .pp-o.on-h{background:rgba(239,68,68,.08);border-color:#EF4444;color:#EF4444}
 .pp-o.on-m{background:rgba(245,158,11,.1);border-color:#F59E0B;color:#B45309}
 .pp-o.on-l{background:rgba(16,185,129,.1);border-color:#10B981;color:#059669}
-.mo{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:100;display:none;align-items:flex-end;justify-content:center;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
-.mo.open{display:flex}
+.mo{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:100;display:none;align-items:flex-end;justify-content:center;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}.mo.open{display:flex}
 .mc{background:#fff;border-radius:24px 24px 0 0;padding:8px 24px 32px;width:100%;max-width:460px;max-height:88dvh;overflow-y:auto;border:1px solid #E2E5EB;border-bottom:none;animation:su .3s cubic-bezier(.16,1,.3,1);box-shadow:0 -4px 24px rgba(0,0,0,.1)}
 @keyframes su{from{transform:translateY(50px);opacity:0}to{transform:translateY(0);opacity:1}}
 .mh{display:flex;justify-content:space-between;align-items:center;padding:12px 0 8px}
@@ -195,46 +174,26 @@ select.inp{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns
 </head>
 <body>
 
-<!-- LOADING -->
-<div id="L" style="min-height:100dvh;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(180deg,#E8F5E9 0%,#F5F7FA 40%) !important">
-  <div style="font-size:64px;margin-bottom:16px">🏠</div>
-  <div class="loading-spinner"></div>
-</div>
-
-<!-- SIGN IN SCREEN -->
-<div id="S" style="display:none">
+<!-- SETUP -->
+<div id="S">
   <div class="s-logo">🏠</div>
   <div class="s-title">Housemates</div>
   <div class="s-sub">manage your shared home, together</div>
-  <button class="google-btn" id="googleBtn" onclick="googleSignIn()">
-    <svg class="google-logo" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18A10.96 10.96 0 001 12c0 1.77.42 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
-    Sign in with Google
-  </button>
-  <div class="s-features">
-    <div class="s-feat"><div class="s-feat-icon">✓</div> Create & assign household tasks</div>
-    <div class="s-feat"><div class="s-feat-icon">🔄</div> Auto-rotating chore schedules</div>
-    <div class="s-feat"><div class="s-feat-icon">📸</div> Share proof photos when done</div>
-    <div class="s-feat"><div class="s-feat-icon">💬</div> Chat with your housemates</div>
+  <div id="sW">
+    <button class="s-start-btn" onclick="startS()">Get Started →</button>
+    <div class="s-features">
+      <div class="s-feat"><div class="s-feat-icon">✓</div> Create & assign household tasks</div>
+      <div class="s-feat"><div class="s-feat-icon">🔄</div> Auto-rotating chore schedules</div>
+      <div class="s-feat"><div class="s-feat-icon">📸</div> Share proof photos when done</div>
+      <div class="s-feat"><div class="s-feat-icon">💬</div> Chat with your housemates</div>
+    </div>
   </div>
+  <div class="s-card" id="sN" style="display:none"><h2>👤 What's your name?</h2><div class="lbl">Display Name</div><input type="text" id="iN" class="inp" placeholder="e.g. Rafay"><div class="lbl">Pick an Avatar</div><div class="chips" id="aP"></div><button class="btn btn-g" style="margin-top:16px" onclick="savN()">Next →</button></div>
+  <div class="s-card" id="sH" style="display:none"><h2>🏡 Your Household</h2><div class="lbl">Create New</div><input type="text" id="iH" class="inp" placeholder="e.g. 6 Hutton Street Maidstone"><button class="btn btn-g" style="margin-top:10px" onclick="crH()">Create Household</button><div style="text-align:center;color:#9CA3AF;font-size:13px;margin:14px 0">— or join an existing one —</div><div class="lbl">Enter Invite Code</div><input type="text" id="iJ" class="inp" placeholder="NEST-XXXX" style="text-transform:uppercase"><button class="btn btn-o" style="margin-top:10px" onclick="joH()">Join Household</button></div>
 </div>
 
-<!-- HOUSEHOLD SETUP (after sign in) -->
-<div id="SH" style="display:none;min-height:100dvh;display:none;flex-direction:column;align-items:center;justify-content:center;padding:28px 20px;background:linear-gradient(180deg,#E8F5E9 0%,#F5F7FA 40%) !important">
-  <div class="signed-in-as" id="signedInAs"></div>
-  <div class="s-card">
-    <h2>🏡 Your Household</h2>
-    <div class="lbl">Create New</div>
-    <input type="text" id="iH" class="inp" placeholder="e.g. 6 Hutton Street Maidstone">
-    <button class="btn btn-g" style="margin-top:10px" onclick="crH()">Create Household</button>
-    <div style="text-align:center;color:#9CA3AF;font-size:13px;margin:14px 0">— or join an existing one —</div>
-    <div class="lbl">Enter Invite Code</div>
-    <input type="text" id="iJ" class="inp" placeholder="NEST-XXXX" style="text-transform:uppercase">
-    <button class="btn btn-o" style="margin-top:10px" onclick="joH()">Join Household</button>
-  </div>
-</div>
-
-<!-- MAIN APP -->
-<div id="A" style="display:none">
+<!-- APP -->
+<div id="A">
   <div class="hdr"><div><div class="hdr-title">Housemates</div><div class="hdr-sub" id="hS">🏡 —</div></div><div class="hdr-r"><button class="btn-icon" onclick="oM('mMem')">👥</button><div class="hdr-av" id="hA">🦊</div></div></div>
   <div class="cnt">
     <div class="tp on" id="t-dash"><div class="stats" id="stE"></div><div class="sec"><div class="sec-t">Your Tasks</div><button class="btn-sm btn-o" onclick="sw('tasks')">See all →</button></div><div id="dM"></div><div class="sec"><div class="sec-t">🔥 Activity Feed</div></div><div id="dF"></div></div>
@@ -243,37 +202,28 @@ select.inp{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns
     <div class="tp" id="t-chat"><div class="sec"><div class="sec-t">💬 House Chat</div></div><div class="chat-w" id="chW"></div><div class="ch-ir"><input type="text" id="chI" class="inp" placeholder="Say something..."><button class="ch-send" onclick="sndM()">➤</button></div></div>
     <div class="tp" id="t-set">
       <div class="sec"><div class="sec-t">Profile</div></div>
-      <div style="display:flex;align-items:center;gap:14px;background:#fff;border-radius:14px;padding:18px;border:1px solid #E2E5EB;margin-bottom:16px;box-shadow:0 1px 3px rgba(0,0,0,.06)">
-        <div class="mr-av" id="sAv">🦊</div><div><div class="mr-n" id="sNm">—</div><div class="mr-s" id="sRl">—</div><div class="mr-s" id="sEm" style="margin-top:2px">—</div></div>
-      </div>
+      <div style="display:flex;align-items:center;gap:14px;background:#fff;border-radius:14px;padding:18px;border:1px solid #E2E5EB;margin-bottom:16px;box-shadow:0 1px 3px rgba(0,0,0,.06)"><div class="mr-av" id="sAv">🦊</div><div><div class="mr-n" id="sNm">—</div><div class="mr-s" id="sRl">—</div></div><button class="btn-sm btn-o" style="margin-left:auto" onclick="oM('mEP')">Edit</button></div>
       <div class="sec"><div class="sec-t">Household</div></div>
       <div style="background:#fff;border-radius:14px;padding:18px;border:1px solid #E2E5EB;margin-bottom:16px;box-shadow:0 1px 3px rgba(0,0,0,.06)">
-        <div style="font-weight:800;font-size:16px;color:#1A1D26;margin-bottom:12px" id="sHN">—</div>
-        <div id="sML"></div>
-        <div style="display:flex;flex-direction:column;gap:10px;margin-top:16px">
-          <button class="btn btn-o" onclick="oM('mInv')">📋 Share Invite Code</button>
-          <button class="btn btn-o" onclick="oM('mAM')">＋ Add Housemate</button>
-        </div>
+        <div style="font-weight:800;font-size:16px;color:#1A1D26;margin-bottom:12px" id="sHN">—</div><div id="sML"></div>
+        <div style="display:flex;flex-direction:column;gap:10px;margin-top:16px"><button class="btn btn-o" onclick="oM('mInv')">📋 Share Invite Code</button><button class="btn btn-o" onclick="oM('mAM')">＋ Add Housemate</button></div>
       </div>
       <div class="sec"><div class="sec-t">Data</div></div>
       <button class="btn btn-o" style="margin-bottom:10px" onclick="expD()">📥 Export Data</button>
-      <div class="signout-section">
-        <button class="btn btn-r" style="margin-bottom:10px" onclick="signOut()">🚪 Sign Out</button>
-      </div>
+      <div class="signout-section"><button class="btn btn-r" style="margin-bottom:10px" onclick="signOut()">🚪 Sign Out</button><button class="btn btn-r" onclick="if(confirm('Delete ALL data and sign out?')){localStorage.clear();location.reload()}">🗑 Reset Everything</button></div>
     </div>
   </div>
 </div>
-<div class="tabs" id="tabs" style="display:none"><button class="tab on" onclick="sw('dash')"><span class="ti">⌂</span>Home</button><button class="tab" onclick="sw('tasks')"><span class="ti">✓</span>Tasks</button><button class="tab" onclick="sw('cal')"><span class="ti">◈</span>Calendar</button><button class="tab" onclick="sw('chat')"><span class="ti">💬</span>Chat</button><button class="tab" onclick="sw('set')"><span class="ti">⚙</span>Settings</button></div>
+<div class="tabs" id="tabs"><button class="tab on" onclick="sw('dash')"><span class="ti">⌂</span>Home</button><button class="tab" onclick="sw('tasks')"><span class="ti">✓</span>Tasks</button><button class="tab" onclick="sw('cal')"><span class="ti">◈</span>Calendar</button><button class="tab" onclick="sw('chat')"><span class="ti">💬</span>Chat</button><button class="tab" onclick="sw('set')"><span class="ti">⚙</span>Settings</button></div>
 
-<!-- Celebration -->
 <div class="cel-ov" id="cel"><div class="cel-card"><div class="cel-emoji">🎉</div><div class="cel-title" id="celT">Task Complete!</div><div class="cel-sub" id="celS">Share proof?</div><div class="pu-area" id="puA" onclick="document.getElementById('phI').click()"><div class="pu-icon">📸</div><div class="pu-text">Tap to take or choose a photo</div><div class="pu-hint">Show what you did!</div></div><input type="file" id="phI" accept="image/*" capture="environment" style="display:none" onchange="prvPh(this)"><div class="pp-area" id="ppA"><img id="phImg"><button class="pp-rm" onclick="rmPh()">✕</button></div><div class="ma"><button class="btn btn-g" onclick="finC()">✨ Share & Done</button><button class="btn btn-o" onclick="skipC()">Skip — No photo</button></div></div></div>
 
-<!-- Modals -->
 <div class="mo" id="mTask"><div class="mc"><div class="mh"><button class="mh-b" onclick="cM('mTask')">← Back</button><button class="mh-x" onclick="cM('mTask')">✕</button></div><div class="mt" id="tfT">New Task</div><input type="hidden" id="eId"><div class="lbl">Task Name</div><input type="text" id="tfN" class="inp" placeholder="e.g. Clean the kitchen"><div class="lbl">Description</div><textarea id="tfD" class="inp" placeholder="What needs to be done..."></textarea><div class="lbl">Priority</div><div class="pp" id="ppE"><button class="pp-o" data-v="high" onclick="sP('high')">🔴 High</button><button class="pp-o on-m" data-v="medium" onclick="sP('medium')">🟡 Medium</button><button class="pp-o" data-v="low" onclick="sP('low')">🟢 Low</button></div><div class="lbl">Frequency</div><select id="tfF" class="inp"><option value="Daily">Daily</option><option value="Weekly" selected>Weekly</option><option value="Fortnightly">Fortnightly</option><option value="Monthly">Monthly</option></select><div class="lbl">Select Members</div><div class="chips" id="tfMC"></div><div class="lbl">Rotation Order — drag to reorder</div><ul class="rot-list" id="rotList"></ul><div class="rot-hint"><span class="rot-hint-icon">🔄</span><span class="rot-hint-text"><strong>Auto-rotation:</strong> When Person 1 completes the task, it automatically moves to Person 2, then 3, and so on forever.</span></div><div class="ma"><button class="btn btn-g" onclick="savT()">Save Task</button><button class="btn btn-o" onclick="cM('mTask')">Cancel</button></div></div></div>
 <div class="mo" id="mDet"><div class="mc" id="detC"></div></div>
 <div class="mo" id="mMem"><div class="mc"><div class="mh"><button class="mh-b" onclick="cM('mMem')">← Back</button><button class="mh-x" onclick="cM('mMem')">✕</button></div><div class="mt">Household Members</div><div id="mL"></div><div class="ma"><button class="btn btn-g" onclick="cM('mMem');oM('mAM')">＋ Add Housemate</button><button class="btn btn-o" onclick="cM('mMem');oM('mInv')">📋 Invite Code</button></div></div></div>
 <div class="mo" id="mAM"><div class="mc"><div class="mh"><button class="mh-b" onclick="cM('mAM')">← Back</button><button class="mh-x" onclick="cM('mAM')">✕</button></div><div class="mt">Add Housemate</div><div class="lbl">Name</div><input type="text" id="amN" class="inp" placeholder="e.g. Alex"><div class="lbl">Avatar</div><div class="chips" id="amA"></div><div class="ma"><button class="btn btn-g" onclick="addM()">Add</button><button class="btn btn-o" onclick="cM('mAM')">Cancel</button></div></div></div>
-<div class="mo" id="mInv"><div class="mc"><div class="mh"><button class="mh-b" onclick="cM('mInv')">← Back</button><button class="mh-x" onclick="cM('mInv')">✕</button></div><div class="mt">Invite Housemates</div><p style="font-size:14px;color:#6B7280;line-height:1.5;margin-bottom:12px">Share this code with your housemates. They sign in with Google and enter it to join.</p><div class="inv-box"><div class="inv-code" id="iC">—</div><div class="inv-lbl">household code</div></div><div class="ma"><button class="btn btn-g" onclick="cpI()">📋 Copy Code</button><button class="btn btn-o" onclick="shI()">📤 Share</button></div></div></div>
+<div class="mo" id="mInv"><div class="mc"><div class="mh"><button class="mh-b" onclick="cM('mInv')">← Back</button><button class="mh-x" onclick="cM('mInv')">✕</button></div><div class="mt">Invite Housemates</div><p style="font-size:14px;color:#6B7280;line-height:1.5;margin-bottom:12px">Share this code with your housemates. They open this app and enter it to join.</p><div class="inv-box"><div class="inv-code" id="iC">—</div><div class="inv-lbl">household code</div></div><div class="ma"><button class="btn btn-g" onclick="cpI()">📋 Copy Code</button><button class="btn btn-o" onclick="shI()">📤 Share</button></div></div></div>
+<div class="mo" id="mEP"><div class="mc"><div class="mh"><button class="mh-b" onclick="cM('mEP')">← Back</button><button class="mh-x" onclick="cM('mEP')">✕</button></div><div class="mt">Edit Profile</div><div class="lbl">Name</div><input type="text" id="epN" class="inp"><div class="lbl">Avatar</div><div class="chips" id="epA"></div><div class="ma"><button class="btn btn-g" onclick="savP()">Save</button><button class="btn btn-o" onclick="cM('mEP')">Cancel</button></div></div></div>
 <div class="mo" id="mPh"><div class="mc" style="padding:0;background:#000;border:none;display:flex;flex-direction:column;max-height:92dvh"><div class="mh" style="padding:10px 16px;background:rgba(0,0,0,.8)"><button class="mh-b" style="color:white" onclick="cM('mPh')">← Back</button><button class="mh-x" style="background:rgba(255,255,255,.15);border-color:transparent;color:white" onclick="cM('mPh')">✕</button></div><div style="flex:1;display:flex;align-items:center;justify-content:center;overflow:hidden;padding:10px"><img id="vImg" style="max-width:100%;max-height:78dvh;object-fit:contain;border-radius:8px"></div></div></div>
 
 <script>
@@ -281,197 +231,62 @@ const FIREBASE_CONFIG={apiKey:"AIzaSyC6cEPxWUMo5aOnwIbdfUJgJrHNMWuUpiY",authDoma
 const AV=['🦊','🐨','🦜','🐙','🦋','🌻','🍄','🎯','🦁','🐸','🌈','🎵','🦖','🐝','🍀','🎪'];
 const COL=['#10B981','#EF4444','#F59E0B','#3B82F6','#8B5CF6','#EC4899'];
 const YAY=['Amazing work!','Smashed it!','Legend!','Household hero!','Clean machine!','What a champ!','Top effort!','Absolute star!','Nailed it!','Boss move!'];
-let DB=null,AUTH=null,U=null,H=null,T=[],M=[],CH=[],FD=[],sP_='medium',nAv='🐨',cY_,cM_,pTid=null,phD=null,rotOrder=[];
+let DB=null,U=null,H=null,T=[],M=[],CH=[],FD=[],sP_='medium',sAv='🦊',nAv='🐨',eAv='🦊',cY_,cM_,pTid=null,phD=null,rotOrder=[];
 
-// Init Firebase + Auth
-firebase.initializeApp(FIREBASE_CONFIG);
-DB=firebase.firestore();
-AUTH=firebase.auth();
-DB.enablePersistence().catch(()=>{});
+function initFB(){try{firebase.initializeApp(FIREBASE_CONFIG);DB=firebase.firestore();DB.enablePersistence().catch(()=>{});return true}catch(e){console.warn('Firebase:',e);return false}}
+function genIcon(){try{const c=document.createElement('canvas');c.width=180;c.height=180;const x=c.getContext('2d');x.fillStyle='#10B981';x.beginPath();x.roundRect(0,0,180,180,36);x.fill();x.fillStyle='#fff';x.font='bold 110px sans-serif';x.textAlign='center';x.textBaseline='middle';x.fillText('H',90,96);const url=c.toDataURL('image/png');let link=document.querySelector('link[rel="apple-touch-icon"]');if(!link){link=document.createElement('link');link.rel='apple-touch-icon';document.head.appendChild(link)}link.href=url}catch(e){}}
 
-// Generate green icon
-function genIcon(){const c=document.createElement('canvas');c.width=180;c.height=180;const x=c.getContext('2d');x.fillStyle='#10B981';x.beginPath();x.roundRect(0,0,180,180,36);x.fill();x.fillStyle='#fff';x.font='bold 110px Plus Jakarta Sans,sans-serif';x.textAlign='center';x.textBaseline='middle';x.fillText('H',90,96);const url=c.toDataURL('image/png');let link=document.querySelector('link[rel="apple-touch-icon"]');if(!link){link=document.createElement('link');link.rel='apple-touch-icon';document.head.appendChild(link)}link.href=url;const fav=document.getElementById('dynFav');if(fav)fav.href=url}
-
-// Auth state listener — this runs automatically
-AUTH.onAuthStateChanged(function(firebaseUser){
-  $('L').style.display='none';
-  if(firebaseUser){
-    // User is signed in
-    U={id:firebaseUser.uid,name:firebaseUser.displayName||'User',avatar:firebaseUser.photoURL||null,email:firebaseUser.email,role:'member'};
-    // Check if user has a household saved
-    const savedH=ls('hm5_h');
-    if(savedH){
-      try{
-        H=JSON.parse(savedH);
-        // Load data from Firestore
-        showApp();
-      }catch(e){showHouseholdSetup()}
-    }else{
-      // Check Firestore if user belongs to any household
-      DB.collectionGroup('m').where('uid','==',firebaseUser.uid).limit(1).get().then(snap=>{
-        if(!snap.empty){
-          const mDoc=snap.docs[0];
-          const hId=mDoc.ref.parent.parent.id;
-          DB.collection('h').doc(hId).get().then(hDoc=>{
-            if(hDoc.exists){
-              H={id:hDoc.id,...hDoc.data()};
-              ls('hm5_h',JSON.stringify(H));
-              U.role=mDoc.data().role||'member';
-              showApp();
-            }else showHouseholdSetup();
-          });
-        }else showHouseholdSetup();
-      }).catch(()=>showHouseholdSetup());
-    }
-  }else{
-    // Not signed in — show sign in screen
-    $('S').style.display='flex';$('SH').style.display='none';$('A').style.display='none';$('tabs').style.display='none';
-  }
+window.addEventListener('load',()=>{
+  initFB();genIcon();
+  const d=ls('hm6');if(d){try{const o=JSON.parse(d);U=o.U;H=o.H;T=o.T||[];M=o.M||[];CH=o.CH||[];FD=o.FD||[];show()}catch(e){}}
+  bAv('aP',a=>sAv=a);bAv('amA',a=>nAv=a);bAv('epA',a=>eAv=a);
+  const n=new Date();cY_=n.getFullYear();cM_=n.getMonth();
+  document.getElementById('chI').addEventListener('keydown',e=>{if(e.key==='Enter')sndM()});
+  document.addEventListener('click',e=>{if(e.target.classList.contains('mo'))e.target.classList.remove('open')});
 });
 
-// Google Sign In
-function googleSignIn(){
-  const provider=new firebase.auth.GoogleAuthProvider();
-  // Use redirect on mobile (popup blocked on iOS Safari)
-  if(/iPhone|iPad|Android/i.test(navigator.userAgent)){
-    AUTH.signInWithRedirect(provider);
-  }else{
-    AUTH.signInWithPopup(provider).catch(e=>{
-      // Fallback to redirect
-      AUTH.signInWithRedirect(provider);
-    });
-  }
-}
-
-// Sign Out
-function signOut(){
-  if(!confirm('Sign out of Housemates?'))return;
-  AUTH.signOut();
-  localStorage.removeItem('hm5_h');
-  U=null;H=null;T=[];M=[];CH=[];FD=[];
-  $('A').style.display='none';$('tabs').style.display='none';$('SH').style.display='none';
-  $('S').style.display='flex';
-  toast('Signed out');
-}
-
-function showHouseholdSetup(){
-  $('S').style.display='none';$('A').style.display='none';$('tabs').style.display='none';
-  $('SH').style.display='flex';
-  // Show who's signed in
-  const photoHtml=U.avatar?`<img src="${U.avatar}" style="width:36px;height:36px;border-radius:50%;border:2px solid #10B981">`:'<div style="width:36px;height:36px;border-radius:50%;background:rgba(16,185,129,.1);display:flex;align-items:center;justify-content:center;font-size:18px;border:2px solid #10B981">👤</div>';
-  $('signedInAs').innerHTML=`${photoHtml}<div><div class="signed-in-name">${esc(U.name)}</div><div class="signed-in-email">${esc(U.email||'')}</div></div>`;
-}
-
-function showApp(){
-  $('S').style.display='none';$('SH').style.display='none';
-  $('A').style.display='block';$('tabs').style.display='flex';
-  $('hS').textContent='🏡 '+(H?.name||'Home');
-  // Set avatar — use Google photo if available
-  if(U.avatar){$('hA').innerHTML=`<img src="${U.avatar}">`}else{$('hA').textContent='👤'}
-  startListeners();rAll();
-}
-
-function startListeners(){
-  const h=DB.collection('h').doc(H.id);
-  h.collection('m').onSnapshot(s=>{
-    M=s.docs.map(d=>({id:d.id,...d.data()}));
-    // Make sure current user is in members
-    if(!M.find(m=>m.uid===U.id)){
-      const me=M.find(m=>m.id===U.id);
-      if(!me)M.push({id:U.id,uid:U.id,name:U.name,avatar:U.avatar,email:U.email,role:U.role});
-    }
-    // Update current user role from Firestore
-    const myDoc=M.find(m=>m.uid===U.id||m.id===U.id);
-    if(myDoc)U.role=myDoc.role||'member';
-    rAll();
-  });
-  h.collection('t').onSnapshot(s=>{T=s.docs.map(d=>({id:d.id,...d.data()}));rAll()});
-  h.collection('ch').orderBy('ts').onSnapshot(s=>{CH=s.docs.map(d=>({id:d.id,...d.data()}));rCh();setTimeout(()=>{const w=$('chW');if(w)w.scrollTop=w.scrollHeight},80)});
-  h.collection('fd').orderBy('ts','desc').limit(20).onSnapshot(s=>{FD=s.docs.map(d=>({id:d.id,...d.data()}));rFd()});
-}
-
-// Household setup
-function crH(){
-  const n=$('iH').value.trim();if(!n)return alert('Please enter a household name');
-  H={id:gid(),name:n,code:'NEST-'+gid().slice(0,4).toUpperCase()};
-  U.role='admin';
-  const memberDoc={id:U.id,uid:U.id,name:U.name,avatar:U.avatar,email:U.email,role:'admin'};
-  DB.collection('h').doc(H.id).set(H);
-  DB.collection('h').doc(H.id).collection('m').doc(U.id).set(memberDoc);
-  ls('hm5_h',JSON.stringify(H));
-  M=[memberDoc];T=[];CH=[];FD=[];
-  showApp();toast('Household created! 🏡');
-}
-function joH(){
-  const c=$('iJ').value.trim().toUpperCase();if(!c)return alert('Please enter the invite code');
-  DB.collection('h').where('code','==',c).get().then(s=>{
-    if(s.empty)return alert('No household found with that code.');
-    const d=s.docs[0];H={id:d.id,...d.data()};
-    U.role='member';
-    const memberDoc={id:U.id,uid:U.id,name:U.name,avatar:U.avatar,email:U.email,role:'member'};
-    DB.collection('h').doc(H.id).collection('m').doc(U.id).set(memberDoc);
-    ls('hm5_h',JSON.stringify(H));
-    showApp();toast('Joined household! 🎉');
-  }).catch(e=>alert('Error: '+e.message));
-}
-
-// Remove member (admin only)
-function removeMember(mid){
-  if(!U||U.role!=='admin')return alert('Only admins can remove members');
-  if(mid===U.id)return alert("You can't remove yourself");
-  const m=gm(mid);if(!confirm(`Remove ${m.name} from the household?`))return;
-  DB.collection('h').doc(H.id).collection('m').doc(mid).delete();
-  // Clean up task rotations
-  T.forEach(t=>{
-    if(t.rot)t.rot=t.rot.filter(x=>x!==mid);
-    if(t.asg)t.asg=t.asg.filter(x=>x!==mid);
-    if(t.cur===mid&&t.rot&&t.rot.length>0)t.cur=t.rot[0];
-    DB.collection('h').doc(H.id).collection('t').doc(t.id).set(t);
-  });
-  toast(m.name+' removed');
-}
-
-// Helpers
 function ls(k,v){if(v===undefined)return localStorage.getItem(k);localStorage.setItem(k,v)}
 function $(id){return document.getElementById(id)}
 function gid(){return Math.random().toString(36).slice(2,10)+Date.now().toString(36).slice(-4)}
-function gm(id){return M.find(m=>m.id===id)||{name:'Unknown',avatar:null,role:'member'}}
-function gmAv(m){return m.avatar?`<img src="${m.avatar}">`:(m.name?m.name[0].toUpperCase():'?')}
+function gm(id){return M.find(m=>m.id===id)||{name:'Unknown',avatar:'❓',role:'member'}}
 function fD(d){return new Date(d).toLocaleDateString('en-AU',{day:'numeric',month:'short'})}
 function esc(s){if(!s)return'';const d=document.createElement('div');d.textContent=s;return d.innerHTML}
+function sav(){ls('hm6',JSON.stringify({U,H,T,M,CH,FD}))}
 function tsA(d){const s=Math.floor((new Date()-d)/1000);if(s<60)return'just now';if(s<3600)return Math.floor(s/60)+'m ago';if(s<86400)return Math.floor(s/3600)+'h ago';return Math.floor(s/86400)+'d ago'}
 function toast(m){const e=document.querySelector('.toast');if(e)e.remove();const t=document.createElement('div');t.className='toast';t.textContent=m;document.body.appendChild(t);setTimeout(()=>t.remove(),2500)}
 function conf(){const c=document.createElement('div');c.className='conf';for(let i=0;i<30;i++){const p=document.createElement('div');p.className='conf-p';p.style.left=Math.random()*100+'%';p.style.animationDelay=Math.random()*.5+'s';p.style.backgroundColor=COL[i%COL.length];c.appendChild(p)}document.body.appendChild(c);setTimeout(()=>c.remove(),2000)}
 function bAv(id,cb){const el=$(id);if(!el)return;el.innerHTML='';AV.forEach((a,i)=>{const c=document.createElement('button');c.className='chip'+(i===0?' on':'');c.textContent=a;c.style.fontSize='18px';c.onclick=()=>{el.querySelectorAll('.chip').forEach(x=>x.classList.remove('on'));c.classList.add('on');cb(a)};el.appendChild(c)})}
 
-window.addEventListener('load',()=>{genIcon();bAv('amA',a=>nAv=a);const n=new Date();cY_=n.getFullYear();cM_=n.getMonth();document.getElementById('chI')?.addEventListener('keydown',e=>{if(e.key==='Enter')sndM()});document.addEventListener('click',e=>{if(e.target.classList.contains('mo'))e.target.classList.remove('open')})});
+function startS(){$('sW').style.display='none';$('sN').style.display='block'}
+function savN(){const n=$('iN').value.trim();if(!n)return alert('Please enter your name');U={id:gid(),name:n,avatar:sAv,role:'admin'};$('sN').style.display='none';$('sH').style.display='block'}
+function crH(){const n=$('iH').value.trim();if(!n)return alert('Please enter a household name');H={id:gid(),name:n,code:'NEST-'+gid().slice(0,4).toUpperCase()};M=[U];T=[];CH=[];FD=[];sav();if(DB){DB.collection('h').doc(H.id).set(H);DB.collection('h').doc(H.id).collection('m').doc(U.id).set(U)}show()}
+function joH(){const c=$('iJ').value.trim().toUpperCase();if(!c)return alert('Please enter the invite code');if(!DB)return alert('Check your internet connection');DB.collection('h').where('code','==',c).get().then(s=>{if(s.empty)return alert('No household found with that code.');const d=s.docs[0];H={id:d.id,...d.data()};U.role='member';M=[U];DB.collection('h').doc(H.id).collection('m').doc(U.id).set(U);DB.collection('h').doc(H.id).collection('m').get().then(ms=>{M=ms.docs.map(x=>({id:x.id,...x.data()}));if(!M.find(m=>m.id===U.id))M.push(U);sav();show()})}).catch(e=>alert('Error: '+e.message))}
+function signOut(){if(!confirm('Sign out of Housemates?'))return;localStorage.removeItem('hm6');U=null;H=null;T=[];M=[];CH=[];FD=[];$('A').style.display='none';$('tabs').style.display='none';$('S').style.display='flex';$('sW').style.display='block';$('sN').style.display='none';$('sH').style.display='none';toast('Signed out')}
+function removeMember(mid){if(!U||U.role!=='admin')return alert('Only admins can remove members');if(mid===U.id)return alert("You can't remove yourself");const m=gm(mid);if(!confirm(`Remove ${m.name} from the household?`))return;M=M.filter(x=>x.id!==mid);T.forEach(t=>{if(t.rot)t.rot=t.rot.filter(x=>x!==mid);if(t.asg)t.asg=t.asg.filter(x=>x!==mid);if(t.cur===mid&&t.rot&&t.rot.length>0)t.cur=t.rot[0]});if(DB&&H){DB.collection('h').doc(H.id).collection('m').doc(mid).delete();T.forEach(t=>{if(t.id)DB.collection('h').doc(H.id).collection('t').doc(t.id).set(t)})}sav();rAll();rSet();cM('mMem');toast(m.name+' removed')}
 
-// Tab switch
-function sw(t){document.querySelectorAll('.tp').forEach(x=>x.classList.remove('on'));$('t-'+t).classList.add('on');document.querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));const ts=['dash','tasks','cal','chat','set'],bs=document.querySelectorAll('.tab'),i=ts.indexOf(t);if(i>=0)bs[i].classList.add('on');if(t==='cal')rCal();if(t==='chat'){rCh();setTimeout(()=>{const w=$('chW');if(w)w.scrollTop=w.scrollHeight},80)}if(t==='set')rSet();rAll()}
+function show(){$('S').style.display='none';$('A').style.display='block';$('tabs').style.display='flex';$('hS').textContent='🏡 '+(H?.name||'Home');$('hA').textContent=U?.avatar||'🦊';if(DB&&H)stL();rAll()}
+function stL(){const h=DB.collection('h').doc(H.id);h.collection('m').onSnapshot(s=>{M=s.docs.map(d=>({id:d.id,...d.data()}));if(!M.find(m=>m.id===U.id))M.push(U);sav();rAll()});h.collection('t').onSnapshot(s=>{T=s.docs.map(d=>({id:d.id,...d.data()}));sav();rAll()});h.collection('ch').orderBy('ts').onSnapshot(s=>{CH=s.docs.map(d=>({id:d.id,...d.data()}));sav();rCh();setTimeout(()=>$('chW').scrollTop=$('chW').scrollHeight,80)});h.collection('fd').orderBy('ts','desc').limit(20).onSnapshot(s=>{FD=s.docs.map(d=>({id:d.id,...d.data()}));sav();rFd()})}
 
-// Render
+function sw(t){document.querySelectorAll('.tp').forEach(x=>x.classList.remove('on'));$('t-'+t).classList.add('on');document.querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));const ts=['dash','tasks','cal','chat','set'],bs=document.querySelectorAll('.tab'),i=ts.indexOf(t);if(i>=0)bs[i].classList.add('on');if(t==='cal')rCal();if(t==='chat'){rCh();setTimeout(()=>$('chW').scrollTop=$('chW').scrollHeight,80)}if(t==='set')rSet();rAll()}
 function rAll(){rSt();rDash();rTasks();rAn();rFd()}
 function rSt(){const p=T.filter(t=>!t.done),m=p.filter(t=>t.cur===U?.id);$('stE').innerHTML=`<div class="st"><div class="st-n">${m.length}</div><div class="st-l">My Tasks</div></div><div class="st"><div class="st-n">${p.length}</div><div class="st-l">Pending</div></div><div class="st"><div class="st-n">${T.filter(t=>t.done).length}</div><div class="st-l">Done</div></div>`}
-function rDash(){const m=T.filter(t=>!t.done&&t.cur===U?.id);$('dM').innerHTML=m.length?m.map(tcH).join(''):'<div class="emp"><div class="emp-i">🎉</div><div class="emp-t">All caught up!</div></div>'}
-function tcH(t){const a=gm(t.cur);const rotText=(t.rot||[]).map(id=>{const m=gm(id);return m.name?m.name.split(' ')[0]:''}).join(' → ');return`<div class="tc${t.done?' done':''}" onclick="sDet('${t.id}')"><div class="tc-l"><div class="pd pd-${t.pri}"></div><div style="min-width:0"><div class="tc-n">${esc(t.name)}</div><div class="tc-m">${t.freq} · ${t.cur===U?.id?'Your turn':esc(a.name)}</div><div class="tc-rot">🔄 ${esc(rotText)}</div></div></div>${!t.done?`<button class="cb" onclick="event.stopPropagation();stC('${t.id}')">✓</button>`:''}</div>`}
+function rDash(){const m=T.filter(t=>!t.done&&t.cur===U?.id);$('dM').innerHTML=m.length?m.map(tcH).join(''):'<div class="emp"><div class="emp-i">🎉</div><div class="emp-t">All caught up! No tasks assigned to you.</div></div>'}
+function tcH(t){const a=gm(t.cur);const rotText=(t.rot||[]).map(id=>gm(id).avatar).join(' → ');return`<div class="tc${t.done?' done':''}" onclick="sDet('${t.id}')"><div class="tc-l"><div class="pd pd-${t.pri}"></div><div style="min-width:0"><div class="tc-n">${esc(t.name)}</div><div class="tc-m">${t.freq} · ${a.avatar} ${t.cur===U?.id?'Your turn':esc(a.name)}</div><div class="tc-rot">🔄 ${rotText}</div></div></div>${!t.done?`<button class="cb" onclick="event.stopPropagation();stC('${t.id}')">✓</button>`:''}</div>`}
 function rTasks(){const p=T.filter(t=>!t.done),d=T.filter(t=>t.done);$('tP').innerHTML=p.length?p.map(tcH).join(''):'<div class="emp"><div class="emp-i">📝</div><div class="emp-t">No tasks yet — tap the button above!</div></div>';if(d.length){$('tDH').style.display='flex';$('tD').innerHTML=d.map(tcH).join('')}else{$('tDH').style.display='none';$('tD').innerHTML=''}}
-function rAn(){const s={};M.forEach(m=>s[m.id]=0);T.forEach(t=>{if(t.hist)t.hist.forEach(h=>{if(s[h.by]!==undefined)s[h.by]++})});const mx=Math.max(...Object.values(s),1),cl=['#10B981','#3B82F6','#F59E0B','#8B5CF6','#EF4444'];$('aC').innerHTML=M.map((m,i)=>{const c=s[m.id]||0;return`<div class="an-row"><span class="an-name">${esc(m.name)}</span><div class="an-bar-bg"><div class="an-bar" style="width:${Math.max(c/mx*100,4)}%;background:${cl[i%cl.length]}"></div></div><span class="an-count">${c}</span></div>`}).join('')}
-function rFd(){const el=$('dF');if(!FD.length){el.innerHTML='<div class="emp"><div class="emp-i">📰</div><div class="emp-t">Complete a task to see activity!</div></div>';return}el.innerHTML=FD.slice(0,10).map(f=>{const m=gm(f.by),tm=f.ts?tsA(new Date(f.ts.seconds?f.ts.seconds*1000:f.ts)):'';const avHtml=m.avatar?`<img src="${m.avatar}">`:(m.name?m.name[0]:'?');return`<div class="feed-card"><div class="feed-hdr"><div class="feed-av">${avHtml}</div><div style="flex:1"><div class="feed-nm">${esc(m.name)} <span style="color:#6B7280;font-weight:400">completed</span> ${esc(f.task)}</div><div class="feed-tm">${tm}</div></div></div>${f.photo?`<div class="feed-ph" onclick="vPh('${f.id}')"><img src="${f.photo}"></div>`:''}<div class="feed-rx"><button class="feed-r${f.lk?.includes(U?.id)?' on':''}" onclick="rF('${f.id}')">👏 ${f.lk?.length||''}</button><button class="feed-r" onclick="rF2('${f.id}','🔥')">🔥</button><button class="feed-r" onclick="rF2('${f.id}','💪')">💪</button></div></div>`}).join('')}
-function rF(id){const f=FD.find(x=>x.id===id);if(!f)return;if(!f.lk)f.lk=[];if(f.lk.includes(U.id))f.lk=f.lk.filter(x=>x!==U.id);else f.lk.push(U.id);DB.collection('h').doc(H.id).collection('fd').doc(id).update({lk:f.lk})}
+function rAn(){const s={};M.forEach(m=>s[m.id]=0);T.forEach(t=>{if(t.hist)t.hist.forEach(h=>{if(s[h.by]!==undefined)s[h.by]++})});const mx=Math.max(...Object.values(s),1),cl=['#10B981','#3B82F6','#F59E0B','#8B5CF6','#EF4444'];$('aC').innerHTML=M.map((m,i)=>{const c=s[m.id]||0;return`<div class="an-row"><span class="an-name">${m.avatar} ${esc(m.name)}</span><div class="an-bar-bg"><div class="an-bar" style="width:${Math.max(c/mx*100,4)}%;background:${cl[i%cl.length]}"></div></div><span class="an-count">${c}</span></div>`}).join('')}
+function rFd(){const el=$('dF');if(!FD.length){el.innerHTML='<div class="emp"><div class="emp-i">📰</div><div class="emp-t">Complete a task to see activity!</div></div>';return}el.innerHTML=FD.slice(0,10).map(f=>{const m=gm(f.by),tm=f.ts?tsA(new Date(f.ts.seconds?f.ts.seconds*1000:f.ts)):'';return`<div class="feed-card"><div class="feed-hdr"><div class="feed-av">${m.avatar}</div><div style="flex:1"><div class="feed-nm">${esc(m.name)} <span style="color:#6B7280;font-weight:400">completed</span> ${esc(f.task)}</div><div class="feed-tm">${tm}</div></div></div>${f.photo?`<div class="feed-ph" onclick="vPh('${f.id}')"><img src="${f.photo}"></div>`:''}<div class="feed-rx"><button class="feed-r${f.lk?.includes(U?.id)?' on':''}" onclick="rF('${f.id}')">👏 ${f.lk?.length||''}</button><button class="feed-r" onclick="rF2('${f.id}','🔥')">🔥</button><button class="feed-r" onclick="rF2('${f.id}','💪')">💪</button></div></div>`}).join('')}
+function rF(id){const f=FD.find(x=>x.id===id);if(!f)return;if(!f.lk)f.lk=[];if(f.lk.includes(U.id))f.lk=f.lk.filter(x=>x!==U.id);else f.lk.push(U.id);if(DB&&H)DB.collection('h').doc(H.id).collection('fd').doc(id).update({lk:f.lk});sav();rFd()}
 function rF2(id,e){toast(e+' Reacted!');rF(id)}
 function vPh(id){const f=FD.find(x=>x.id===id);if(f?.photo){$('vImg').src=f.photo;oM('mPh')}}
-
-// Completion
-function stC(id){pTid=id;phD=null;const t=T.find(x=>x.id===id);$('celT').textContent=YAY[Math.floor(Math.random()*YAY.length)];const nextId=(t.rot||[])[((t.rot||[]).indexOf(t.cur)+1)%(t.rot||[]).length];const next=gm(nextId);$('celS').textContent=`You finished "${t?.name}". Next up: ${esc(next.name)}`;$('puA').style.display='block';$('ppA').style.display='none';$('cel').classList.add('show');conf()}
+function stC(id){pTid=id;phD=null;const t=T.find(x=>x.id===id);$('celT').textContent=YAY[Math.floor(Math.random()*YAY.length)];const nextId=(t.rot||[])[((t.rot||[]).indexOf(t.cur)+1)%(t.rot||[]).length];const next=gm(nextId);$('celS').textContent=`You finished "${t?.name}". Next up: ${next.avatar} ${next.name}`;$('puA').style.display='block';$('ppA').style.display='none';$('cel').classList.add('show');conf()}
 function prvPh(inp){if(!inp.files||!inp.files[0])return;const r=new FileReader();r.onload=e=>{phD=e.target.result;$('phImg').src=phD;$('puA').style.display='none';$('ppA').style.display='block'};r.readAsDataURL(inp.files[0])}
 function rmPh(){phD=null;$('puA').style.display='block';$('ppA').style.display='none';$('phI').value=''}
 function finC(){doC(pTid,phD);$('cel').classList.remove('show');$('phI').value='';phD=null}
 function skipC(){doC(pTid,null);$('cel').classList.remove('show');$('phI').value='';phD=null}
-function doC(id,photo){const t=T.find(x=>x.id===id);if(!t)return;if(!t.hist)t.hist=[];t.hist.push({by:t.cur,date:new Date().toISOString().split('T')[0]});const o=t.rot||t.asg||[];const ci=o.indexOf(t.cur);t.cur=o[(ci+1)%o.length];t.done=true;const fi={id:gid(),by:U.id,task:t.name,photo:photo||null,ts:firebase.firestore.FieldValue.serverTimestamp(),lk:[]};DB.collection('h').doc(H.id).collection('t').doc(id).set(t);DB.collection('h').doc(H.id).collection('fd').doc(fi.id).set(fi);setTimeout(()=>{t.done=false;DB.collection('h').doc(H.id).collection('t').doc(id).set(t)},3500);toast('Task done! 🎉')}
+function doC(id,photo){const t=T.find(x=>x.id===id);if(!t)return;if(!t.hist)t.hist=[];t.hist.push({by:t.cur,date:new Date().toISOString().split('T')[0]});const o=t.rot||t.asg||[];const ci=o.indexOf(t.cur);t.cur=o[(ci+1)%o.length];t.done=true;const fi={id:gid(),by:U.id,task:t.name,photo:photo||null,ts:new Date(),lk:[]};FD.unshift(fi);if(DB&&H){DB.collection('h').doc(H.id).collection('t').doc(id).set(t);DB.collection('h').doc(H.id).collection('fd').doc(fi.id).set({...fi,ts:firebase.firestore.FieldValue.serverTimestamp()})}setTimeout(()=>{t.done=false;if(DB&&H)DB.collection('h').doc(H.id).collection('t').doc(id).set(t);sav();rAll()},3500);sav();rAll();toast('Task done! 🎉')}
 
-// Drag reorder
 let dragEl=null,dragIdx=-1,touchItem=null,touchStartIdx=-1;
-function buildRotList(){const ul=$('rotList');ul.innerHTML='';rotOrder.forEach((id,i)=>{const m=gm(id);const li=document.createElement('li');li.className='rot-item';li.dataset.idx=i;li.draggable=true;li.innerHTML=`<span class="drag-handle">☰</span><span class="rot-name">${esc(m.name)}</span><span class="rot-num">${i+1}</span>`;li.addEventListener('touchstart',tsH,{passive:false});li.addEventListener('touchmove',tmH,{passive:false});li.addEventListener('touchend',teH);li.addEventListener('dragstart',dsH);li.addEventListener('dragover',doH);li.addEventListener('drop',dpH);li.addEventListener('dragend',deH);ul.appendChild(li)})}
+function buildRotList(){const ul=$('rotList');ul.innerHTML='';rotOrder.forEach((id,i)=>{const m=gm(id);const li=document.createElement('li');li.className='rot-item';li.dataset.idx=i;li.draggable=true;li.innerHTML=`<span class="drag-handle">☰</span><span style="font-size:20px">${m.avatar}</span><span class="rot-name">${esc(m.name)}</span><span class="rot-num">${i+1}</span>`;li.addEventListener('touchstart',tsH,{passive:false});li.addEventListener('touchmove',tmH,{passive:false});li.addEventListener('touchend',teH);li.addEventListener('dragstart',dsH);li.addEventListener('dragover',doH);li.addEventListener('drop',dpH);li.addEventListener('dragend',deH);ul.appendChild(li)})}
 function dsH(e){dragEl=e.currentTarget;dragIdx=+dragEl.dataset.idx;dragEl.classList.add('dragging');e.dataTransfer.effectAllowed='move'}
 function doH(e){e.preventDefault()}
 function dpH(e){e.preventDefault();const di=+e.currentTarget.dataset.idx;if(dragIdx!==di){rotOrder.splice(di,0,rotOrder.splice(dragIdx,1)[0]);buildRotList()}}
@@ -480,50 +295,31 @@ function tsH(e){touchItem=e.currentTarget;touchStartIdx=+touchItem.dataset.idx;t
 function tmH(e){e.preventDefault();const cy=e.touches[0].clientY;const items=$('rotList').querySelectorAll('.rot-item');let overIdx=touchStartIdx;items.forEach((it,i)=>{const r=it.getBoundingClientRect();if(cy>r.top&&cy<r.bottom)overIdx=i});if(overIdx!==touchStartIdx){rotOrder.splice(overIdx,0,rotOrder.splice(touchStartIdx,1)[0]);touchStartIdx=overIdx;buildRotList();const ni=$('rotList').querySelectorAll('.rot-item');if(ni[overIdx])ni[overIdx].classList.add('dragging')}}
 function teH(){if(touchItem)touchItem.classList.remove('dragging');touchItem=null}
 
-// Task CRUD
 function oAT(){$('tfT').textContent='New Task';$('eId').value='';$('tfN').value='';$('tfD').value='';$('tfF').value='Weekly';sP('medium');rotOrder=[];bMC([]);buildRotList();oM('mTask')}
 function oET(id){const t=T.find(x=>x.id===id);if(!t)return;$('tfT').textContent='Edit Task';$('eId').value=id;$('tfN').value=t.name;$('tfD').value=t.desc||'';$('tfF').value=t.freq;sP(t.pri);rotOrder=[...(t.rot||[])];bMC(t.rot||[]);buildRotList();oM('mTask')}
-function bMC(sel){const el=$('tfMC');el.innerHTML='';M.forEach(m=>{const c=document.createElement('button');const isOn=sel.includes(m.id)||sel.length===0;c.className='chip'+(isOn?' on':'');c.textContent=esc(m.name);c.dataset.id=m.id;c.onclick=()=>{c.classList.toggle('on');if(c.classList.contains('on')){if(!rotOrder.includes(m.id))rotOrder.push(m.id)}else{rotOrder=rotOrder.filter(x=>x!==m.id)}buildRotList()};el.appendChild(c);if(isOn&&!rotOrder.includes(m.id))rotOrder.push(m.id)})}
+function bMC(sel){const el=$('tfMC');el.innerHTML='';M.forEach(m=>{const c=document.createElement('button');const isOn=sel.includes(m.id)||sel.length===0;c.className='chip'+(isOn?' on':'');c.textContent=m.avatar+' '+m.name;c.dataset.id=m.id;c.onclick=()=>{c.classList.toggle('on');if(c.classList.contains('on')){if(!rotOrder.includes(m.id))rotOrder.push(m.id)}else{rotOrder=rotOrder.filter(x=>x!==m.id)}buildRotList()};el.appendChild(c);if(isOn&&!rotOrder.includes(m.id))rotOrder.push(m.id)})}
 function sP(p){sP_=p;document.querySelectorAll('#ppE .pp-o').forEach(b=>{b.className='pp-o'+(b.dataset.v===p?' on-'+p:'')})}
-function savT(){const n=$('tfN').value.trim();if(!n)return alert('Please enter a task name');if(rotOrder.length===0)return alert('Select at least one person');const d=$('tfD').value.trim(),f=$('tfF').value,eid=$('eId').value;if(eid){const i=T.findIndex(t=>t.id===eid);if(i>=0){T[i].name=n;T[i].desc=d;T[i].pri=sP_;T[i].freq=f;T[i].rot=rotOrder;T[i].asg=rotOrder;if(!rotOrder.includes(T[i].cur))T[i].cur=rotOrder[0];DB.collection('h').doc(H.id).collection('t').doc(eid).set(T[i])}toast('Updated! ✏️')}else{const t={id:gid(),name:n,desc:d,pri:sP_,freq:f,asg:rotOrder,rot:rotOrder,cur:rotOrder[0],done:false,hist:[]};DB.collection('h').doc(H.id).collection('t').doc(t.id).set(t);toast('Task created! 📝')}cM('mTask')}
-function delT(id){if(!confirm('Delete this task?'))return;DB.collection('h').doc(H.id).collection('t').doc(id).delete();cM('mDet');toast('Deleted 🗑')}
+function savT(){const n=$('tfN').value.trim();if(!n)return alert('Please enter a task name');if(rotOrder.length===0)return alert('Select at least one person');const d=$('tfD').value.trim(),f=$('tfF').value,eid=$('eId').value;if(eid){const i=T.findIndex(t=>t.id===eid);if(i>=0){T[i].name=n;T[i].desc=d;T[i].pri=sP_;T[i].freq=f;T[i].rot=rotOrder;T[i].asg=rotOrder;if(!rotOrder.includes(T[i].cur))T[i].cur=rotOrder[0];if(DB&&H)DB.collection('h').doc(H.id).collection('t').doc(eid).set(T[i])}toast('Updated! ✏️')}else{const t={id:gid(),name:n,desc:d,pri:sP_,freq:f,asg:rotOrder,rot:rotOrder,cur:rotOrder[0],done:false,hist:[]};T.push(t);if(DB&&H)DB.collection('h').doc(H.id).collection('t').doc(t.id).set(t);toast('Task created! 📝')}sav();rAll();cM('mTask')}
+function delT(id){if(!confirm('Delete this task?'))return;T=T.filter(t=>t.id!==id);if(DB&&H)DB.collection('h').doc(H.id).collection('t').doc(id).delete();sav();rAll();cM('mDet');toast('Deleted 🗑')}
+function sDet(id){const t=T.find(x=>x.id===id);if(!t)return;const a=gm(t.cur);const rot=(t.rot||[]).map((rid,i)=>{const m=gm(rid);return`${i?'<span class="rot-arr">→</span>':''}<span class="rot-p${rid===t.cur?' cur':''}">${m.avatar} ${esc(m.name)}</span>`}).join('');const hist=(t.hist||[]).slice().reverse().map(h=>{const m=gm(h.by);return`<div class="hr"><span>${m.avatar} ${esc(m.name)}</span><span class="hr-d">${fD(h.date)}</span></div>`}).join('')||'<p style="color:#9CA3AF;font-size:14px">No completions yet</p>';const photos=FD.filter(f=>f.task===t.name&&f.photo);const phH=photos.length?`<div class="lbl">📸 PROOF PHOTOS</div><div class="proof-grid">${photos.slice(0,4).map(f=>{const m=gm(f.by);return`<div class="proof-card" onclick="vPh('${f.id}')"><img src="${f.photo}"><div class="proof-info"><div class="proof-name">${m.avatar} ${esc(m.name)}</div><div class="proof-date">${tsA(new Date(f.ts.seconds?f.ts.seconds*1000:f.ts))}</div></div><div class="proof-badge">✓</div></div>`}).join('')}</div>`:''
+$('detC').innerHTML=`<div class="mh"><button class="mh-b" onclick="cM('mDet')">← Back</button><button class="mh-x" onclick="cM('mDet')">✕</button></div><div class="mt">${esc(t.name)}</div>${t.desc?`<p style="color:#6B7280;font-size:14px;line-height:1.5;margin-bottom:14px">${esc(t.desc)}</p>`:''}<div class="dr"><span class="dr-l">Priority</span><span class="dr-v" style="color:${t.pri==='high'?'#EF4444':t.pri==='medium'?'#B45309':'#059669'}">${t.pri[0].toUpperCase()+t.pri.slice(1)}</span></div><div class="dr"><span class="dr-l">Frequency</span><span class="dr-v">${t.freq}</span></div><div class="dr"><span class="dr-l">Current Turn</span><span class="dr-v">${a.avatar} ${esc(a.name)}</span></div><div class="dr"><span class="dr-l">Automation</span><span class="dr-v"><span class="auto-badge">🔄 Auto-rotating</span></span></div><div class="lbl">ROTATION ORDER</div><div class="rot">${rot}</div><div class="rot-hint" style="margin-top:8px"><span class="rot-hint-icon">💡</span><span class="rot-hint-text">When ${a.avatar} ${esc(a.name)} completes this, it auto-moves to the next person.</span></div>${phH}<div style="margin:20px 0 10px;font-size:16px;font-weight:800;color:#1A1D26">History</div>${hist}<div class="ma">${!t.done?`<button class="btn btn-g" onclick="cM('mDet');stC('${t.id}')">✓ Mark Complete</button>`:''}<button class="btn btn-o" onclick="cM('mDet');oET('${t.id}')">✏️ Edit Task</button><button class="btn btn-r" onclick="delT('${t.id}')">🗑 Delete Task</button></div>`;oM('mDet')}
 
-// Task Detail
-function sDet(id){const t=T.find(x=>x.id===id);if(!t)return;const a=gm(t.cur);const rot=(t.rot||[]).map((rid,i)=>{const m=gm(rid);return`${i?'<span class="rot-arr">→</span>':''}<span class="rot-p${rid===t.cur?' cur':''}">${esc(m.name)}</span>`}).join('');const hist=(t.hist||[]).slice().reverse().map(h=>{const m=gm(h.by);return`<div class="hr"><span>${esc(m.name)}</span><span class="hr-d">${fD(h.date)}</span></div>`}).join('')||'<p style="color:#9CA3AF;font-size:14px">No completions yet</p>';const photos=FD.filter(f=>f.task===t.name&&f.photo);const phH=photos.length?`<div class="lbl">📸 PROOF PHOTOS</div><div class="proof-grid">${photos.slice(0,4).map(f=>{const m=gm(f.by);return`<div class="proof-card" onclick="vPh('${f.id}')"><img src="${f.photo}"><div class="proof-info"><div class="proof-name">${esc(m.name)}</div><div class="proof-date">${tsA(new Date(f.ts.seconds?f.ts.seconds*1000:f.ts))}</div></div><div class="proof-badge">✓</div></div>`}).join('')}</div>`:''
-$('detC').innerHTML=`<div class="mh"><button class="mh-b" onclick="cM('mDet')">← Back</button><button class="mh-x" onclick="cM('mDet')">✕</button></div><div class="mt">${esc(t.name)}</div>${t.desc?`<p style="color:#6B7280;font-size:14px;line-height:1.5;margin-bottom:14px">${esc(t.desc)}</p>`:''}<div class="dr"><span class="dr-l">Priority</span><span class="dr-v" style="color:${t.pri==='high'?'#EF4444':t.pri==='medium'?'#B45309':'#059669'}">${t.pri[0].toUpperCase()+t.pri.slice(1)}</span></div><div class="dr"><span class="dr-l">Frequency</span><span class="dr-v">${t.freq}</span></div><div class="dr"><span class="dr-l">Current Turn</span><span class="dr-v">${esc(a.name)}</span></div><div class="dr"><span class="dr-l">Automation</span><span class="dr-v"><span class="auto-badge">🔄 Auto-rotating</span></span></div><div class="lbl">ROTATION ORDER</div><div class="rot">${rot}</div><div class="rot-hint" style="margin-top:8px"><span class="rot-hint-icon">💡</span><span class="rot-hint-text">When ${esc(a.name)} completes this, it auto-moves to the next person.</span></div>${phH}<div style="margin:20px 0 10px;font-size:16px;font-weight:800;color:#1A1D26">History</div>${hist}<div class="ma">${!t.done?`<button class="btn btn-g" onclick="cM('mDet');stC('${t.id}')">✓ Mark Complete</button>`:''}<button class="btn btn-o" onclick="cM('mDet');oET('${t.id}')">✏️ Edit Task</button><button class="btn btn-r" onclick="delT('${t.id}')">🗑 Delete Task</button></div>`;oM('mDet')}
-
-// Calendar
 function rCal(){const mo=['January','February','March','April','May','June','July','August','September','October','November','December'];$('cMo').textContent=mo[cM_]+' '+cY_;const g=$('cG');let h=['M','T','W','T','F','S','S'].map(d=>`<div class="cal-dl">${d}</div>`).join('');const fd=new Date(cY_,cM_,1).getDay(),off=fd===0?6:fd-1,dim=new Date(cY_,cM_+1,0).getDate(),now=new Date();for(let i=0;i<off;i++)h+='<div class="cal-d"></div>';for(let d=1;d<=dim;d++){const isT=d===now.getDate()&&cM_===now.getMonth()&&cY_===now.getFullYear();const hasT=isT&&T.some(t=>!t.done&&t.cur===U?.id);h+=`<div class="cal-d${isT?' today':''}${hasT?' has':''}">${d}</div>`}g.innerHTML=h;const mine=T.filter(t=>!t.done&&t.cur===U?.id);$('cT').innerHTML=mine.length?mine.map(tcH).join(''):'<div class="emp"><div class="emp-t">No tasks today</div></div>'}
 function cN(d){cM_+=d;if(cM_>11){cM_=0;cY_++}if(cM_<0){cM_=11;cY_--}rCal()}
+function rCh(){const el=$('chW');if(!CH.length){el.innerHTML='<div class="emp"><div class="emp-i">💬</div><div class="emp-t">No messages yet</div></div>';return}el.innerHTML=CH.map(m=>{const s=gm(m.from),me=m.from===U?.id,tm=m.ts?new Date(m.ts.seconds?m.ts.seconds*1000:m.ts).toLocaleTimeString('en-AU',{hour:'2-digit',minute:'2-digit'}):'';return`<div class="ch-b${me?' me':''}">${!me?`<span class="ch-av">${s.avatar}</span>`:''}<div class="ch-msg"><div class="ch-sn">${me?'You':esc(s.name)}</div><div>${esc(m.text)}</div><div class="ch-tm">${tm}</div></div></div>`}).join('')}
+function sndM(){const i=$('chI'),t=i.value.trim();if(!t)return;const m={from:U.id,text:t,ts:new Date()};if(DB&&H)DB.collection('h').doc(H.id).collection('ch').add({...m,ts:firebase.firestore.FieldValue.serverTimestamp()});else{CH.push({id:gid(),...m});sav();rCh();setTimeout(()=>$('chW').scrollTop=$('chW').scrollHeight,50)}i.value=''}
 
-// Chat
-function rCh(){const el=$('chW');if(!CH.length){el.innerHTML='<div class="emp"><div class="emp-i">💬</div><div class="emp-t">No messages yet</div></div>';return}el.innerHTML=CH.map(m=>{const s=gm(m.from),me=m.from===U?.id,tm=m.ts?new Date(m.ts.seconds?m.ts.seconds*1000:m.ts).toLocaleTimeString('en-AU',{hour:'2-digit',minute:'2-digit'}):'';return`<div class="ch-b${me?' me':''}">${!me?`<span class="ch-av">${esc(s.name?s.name[0]:'?')}</span>`:''}<div class="ch-msg"><div class="ch-sn">${me?'You':esc(s.name)}</div><div>${esc(m.text)}</div><div class="ch-tm">${tm}</div></div></div>`}).join('')}
-function sndM(){const i=$('chI'),t=i.value.trim();if(!t)return;DB.collection('h').doc(H.id).collection('ch').add({from:U.id,text:t,ts:firebase.firestore.FieldValue.serverTimestamp()});i.value=''}
-
-// Settings
 function rSet(){
-  if(U.avatar){$('sAv').innerHTML=`<img src="${U.avatar}">`}else{$('sAv').textContent=U?.name?U.name[0]:'?'}
-  $('sNm').textContent=U?.name||'—';
-  $('sRl').textContent=U?.role==='admin'?'Admin':'Member';
-  $('sEm').textContent=U?.email||'';
-  $('sHN').textContent='🏡 '+(H?.name||'—');
+  $('sAv').textContent=U?.avatar||'🦊';$('sNm').textContent=U?.name||'—';$('sRl').textContent=U?.role==='admin'?'Admin':'Member';$('sHN').textContent='🏡 '+(H?.name||'—');
   const isAdmin=U?.role==='admin';
-  $('sML').innerHTML=M.map(m=>{
-    const isMe=m.id===U?.id;
-    const rmBtn=isAdmin&&!isMe?`<button class="btn-rm" onclick="removeMember('${m.id}')" title="Remove">✕</button>`:'';
-    return`<div class="mr"><div class="mr-i"><div class="mr-av">${m.avatar?`<img src="${m.avatar}">`:(m.name?m.name[0]:'?')}</div><div><div class="mr-n">${esc(m.name)}${isMe?' (You)':''}</div><div class="mr-s">${esc(m.email||'')}</div></div></div><div style="display:flex;align-items:center;gap:8px">${rmBtn}<span class="badge badge-${m.role==='admin'?'a':'m'}">${m.role}</span></div></div>`
-  }).join('');
+  $('sML').innerHTML=M.map(m=>{const isMe=m.id===U?.id;const rmBtn=isAdmin&&!isMe?`<button class="btn-rm" onclick="removeMember('${m.id}')">✕</button>`:'';return`<div class="mr"><div class="mr-i"><div class="mr-av">${m.avatar}</div><div><div class="mr-n">${esc(m.name)}${isMe?' (You)':''}</div></div></div><div style="display:flex;align-items:center;gap:8px">${rmBtn}<span class="badge badge-${m.role==='admin'?'a':'m'}">${m.role}</span></div></div>`}).join('');
 }
-
-function addM(){const n=$('amN').value.trim();if(!n)return alert('Enter a name');const m={id:gid(),name:n,avatar:null,email:'',role:'member'};DB.collection('h').doc(H.id).collection('m').doc(m.id).set(m);cM('mAM');$('amN').value='';toast(n+' added! 🎉')}
+function addM(){const n=$('amN').value.trim();if(!n)return alert('Enter a name');const m={id:gid(),name:n,avatar:nAv,role:'member'};M.push(m);if(DB&&H)DB.collection('h').doc(H.id).collection('m').doc(m.id).set(m);sav();rAll();rSet();cM('mAM');$('amN').value='';toast(n+' added! 🎉')}
+function savP(){const n=$('epN').value.trim();if(!n)return alert('Enter a name');U.name=n;U.avatar=eAv;const i=M.findIndex(m=>m.id===U.id);if(i>=0){M[i].name=n;M[i].avatar=eAv}$('hA').textContent=eAv;if(DB&&H)DB.collection('h').doc(H.id).collection('m').doc(U.id).set(U);sav();rAll();rSet();cM('mEP');toast('Updated!')}
 function cpI(){const c=H?.code||'';navigator.clipboard.writeText(c).then(()=>toast('Copied! 📋')).catch(()=>prompt('Copy this code:',c))}
 function shI(){const c=H?.code||'',t=`Join my household on Housemates! 🏠\n\n${H?.name}\nCode: ${c}\n\nOpen: ${location.href}`;if(navigator.share)navigator.share({title:'Join Housemates',text:t});else{navigator.clipboard.writeText(t).then(()=>toast('Copied!')).catch(()=>prompt('Copy:',t))}}
 function expD(){const d={H,M,T,CH,FD,at:new Date().toISOString()};const b=new Blob([JSON.stringify(d,null,2)],{type:'application/json'});const u=URL.createObjectURL(b);const a=document.createElement('a');a.href=u;a.download='housemates-data.json';a.click();URL.revokeObjectURL(u);toast('Exported! 📥')}
-function oM(id){
-  if(id==='mInv')$('iC').textContent=H?.code||'—';
-  if(id==='mMem'){const isAdmin=U?.role==='admin';$('mL').innerHTML=M.map(m=>{const isMe=m.id===U?.id;const rmBtn=isAdmin&&!isMe?`<button class="btn-rm" onclick="removeMember('${m.id}')" title="Remove">✕</button>`:'';return`<div class="mr"><div class="mr-i"><div class="mr-av">${m.avatar?`<img src="${m.avatar}">`:(m.name?m.name[0]:'?')}</div><div><div class="mr-n">${esc(m.name)}${isMe?' (You)':''}</div></div></div><div style="display:flex;align-items:center;gap:8px">${rmBtn}<span class="badge badge-${m.role==='admin'?'a':'m'}">${m.role}</span></div></div>`}).join('')}
-  $(id).classList.add('open');
-}
+function oM(id){if(id==='mInv')$('iC').textContent=H?.code||'—';if(id==='mMem'){const isAdmin=U?.role==='admin';$('mL').innerHTML=M.map(m=>{const isMe=m.id===U?.id;const rmBtn=isAdmin&&!isMe?`<button class="btn-rm" onclick="removeMember('${m.id}')">✕</button>`:'';return`<div class="mr"><div class="mr-i"><div class="mr-av">${m.avatar}</div><div><div class="mr-n">${esc(m.name)}${isMe?' (You)':''}</div></div></div><div style="display:flex;align-items:center;gap:8px">${rmBtn}<span class="badge badge-${m.role==='admin'?'a':'m'}">${m.role}</span></div></div>`}).join('')}if(id==='mEP'){$('epN').value=U?.name||'';eAv=U?.avatar||'🦊';bAv('epA',a=>eAv=a)}$(id).classList.add('open')}
 function cM(id){$(id).classList.remove('open')}
 </script>
 </body>
